@@ -9,7 +9,7 @@ import csv
 import os
 
 
-CITY = 'Durham, NC, USA'
+CITY = 'Raleigh, NC, USA'
 
 
 def get_jobs(page):  # Returns a JSON listing of the jobs for CITY on the given page of Google's website
@@ -45,7 +45,8 @@ while jobs:  # Run as long as there are still jobs to grab
 
 for job_id in old_jobs.keys() - all_jobs.keys():  # Loop through each job that was found in the spreadsheet but not on Google's website
     all_jobs[job_id] = old_jobs[job_id]
-    all_jobs[job_id]['date_removed'] = str(datetime.fromtimestamp(time.time()))[:10]  # Store today's date, when the job was found to be removed from Google's website
+    if not all_jobs[job_id]['date_removed']:
+        all_jobs[job_id]['date_removed'] = str(datetime.fromtimestamp(time.time()))[:10]  # Store today's date, when the job was found to be removed from Google's website
 
 csv_writer = csv.writer(open(CITY + '.csv', 'w'))
 
