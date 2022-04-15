@@ -9,7 +9,7 @@ import csv
 import os
 
 
-CITY = 'Chapel Hill, NC, USA'
+CITY = 'Durham, NC, USA'
 
 
 def get_jobs(page):  # Returns a JSON listing of the jobs for CITY on the given page of Google's website
